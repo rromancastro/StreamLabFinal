@@ -1,0 +1,63 @@
+#thirdSectionMobile {
+    display: none;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 128px 0;
+    gap: 48px;
+}
+
+#thirdSectionMobileTitle {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.thirdSectionMobileCard {
+    width: 90%;
+    max-width: 390px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.thirdSectionMobileSubtitle {
+    font-size: 24px;
+    font-weight: 900;
+    font-family: "Moderniz";
+    color: #ffffff;
+}
+
+.thirdSectionMobileLine {
+    height: 2px;
+    width: 100%;
+    background-color: #E0AAFF;
+    margin: 24px 0;
+}
+
+.thirdSectionMobileP {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    span {
+        font-weight: 500;
+    }
+}
+
+.thirdSectionMobileUbi {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 300;
+    gap: 16px;
+}
+
+@media (max-width: 862px) {
+    #thirdSectionMobile {
+        display: flex;
+    }
+}

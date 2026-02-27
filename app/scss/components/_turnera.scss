@@ -1,0 +1,930 @@
+#turneraContainer {
+    width: 848px;
+    height: 848px;
+    background-image: url('/turnera/bg.png ');
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 24px;
+    padding: 32px;
+    box-shadow: 0px 24px 24px -2px rgb(0, 0, 0, 0.4), 0px 4px 8px -2px rgb(0, 0, 0, 0.6);
+    z-index: 150;
+    position: absolute;
+    top: 800px;
+    align-self: center;
+}
+
+#errorToastContainer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 10px;
+    width: 848px;
+    height: 848px;
+    z-index: 500;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p {
+        padding: 24px;
+        color: #ffffff;
+        background-color: #5A189A99;
+        border: 0.5px solid #C77DFF99;
+        border-radius: 16px;
+        backdrop-filter: blur(8px);
+    }
+}
+
+.turneraH2 {
+    font-family: "Moderniz";
+    font-weight: 900;
+    font-size: 72px;
+    text-align: right;
+    color: #ffffff;
+    line-height: 84px;
+}
+
+.turneraUtilities {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 24px;
+    position: relative;
+    overflow: visible
+}
+
+.selectersContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    z-index: 100;
+}
+
+.fechaContainer {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    height: 48px;
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-items: center;
+    .fechaContainerLabel {
+        font-size: 16px;
+        color: #ffffff;
+        font-weight: 300;
+    }
+    .seleccionarFechaContainer {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        p {
+            font-size: 16px;
+            color: #8C8C8C;
+            font-weight: 400;
+        }
+        .seleccionarFechaIcon {
+            transition: background-color .5s, color .5s, rotate 0s;
+            rotate: 180deg;
+            color: #8C8C8C;
+            position: absolute;
+            right: 20px;
+            width: 38px;
+            height: 38px;
+            padding: 10px;
+            border-radius: 18px;
+            &:hover {
+                cursor: pointer;
+                background-color: #7B2CBF33;
+                color: #E0AAFF;
+            }
+        }
+    }
+}
+
+.turnossContainer {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    height: 48px;
+    display: grid;
+    grid-template-columns: 10% 45% 45%;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-items: center;
+    .seleccionarFechaIcon {
+            transition: background-color .5s, color .5s, rotate 0s;
+            rotate: 180deg;
+            color: #8C8C8C;
+            position: absolute;
+            right: 20px;
+            width: 38px;
+            height: 38px;
+            padding: 10px;
+            border-radius: 18px;
+            &:hover {
+                cursor: pointer;
+                background-color: #7B2CBF33;
+                color: #E0AAFF;
+            }
+        }
+    .turnossContainerLabel {
+        font-size: 16px;
+        color: #ffffff;
+        font-weight: 300;
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+        height: 45px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    div {
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        p {
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 300;
+            display: flex;
+            gap: 24px;
+            span {
+                color: #8C8C8C;
+            }
+        }
+    }
+}
+
+.turnosInfoMobile {
+    display: none;
+}
+
+.calendarContainer {
+        position: absolute;
+        top: 48px;
+        right: 0;
+        z-index: 9999;
+        backdrop-filter: blur(12px);
+        background-color: #0A001A99;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        padding: 16px;
+        overflow: visible !important;
+        .react-calendar {
+            background-color: transparent;
+            border: none;
+        }
+        //nombres dias
+        .react-calendar__month-view__weekdays__weekday {
+            color: #ffffff;
+            font-weight: 300;
+            font-size: 12px;
+        }
+        .react-calendar__month-view__weekdays__weekday abbr {
+            text-decoration: none;
+        }
+        //numeros
+        .react-calendar__tile {
+            font-size: 16px;
+            color: #8C8C8C;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            transition: none;
+        }
+        .react-calendar__tile:hover {
+            color: #B8B7B7;
+            background-color: #7B2CBF33!important; 
+        }
+        .react-calendar__tile--active {
+            background-color: #5A189A !important;
+        }
+        // dia actual
+        .react-calendar__tile--now {
+            font-size: 16px;
+            color: #8C8C8C;
+            border-radius: 50%;
+            opacity: 1  !important;
+            background-color: transparent !important;
+            width: 50px;
+            height: 50px;
+            transition: none;
+        }
+        //dia seleccionado
+        .react-calendar__tile--active {
+            background-color: #5A189A !important;
+            color: #E0AAFF !important;
+            border-radius: 50%;
+            font-size: 16px;
+        }
+        //dias que no son del mes
+        .react-calendar__month-view__days__day--neighboringMonth {
+            opacity: 0;
+        }
+        //dias pasados
+        .rc-past-day {
+            background-color: transparent !important;
+            pointer-events: none;
+        }
+
+        //nav personalizado
+        .calendarNav {
+            display: flex;
+            justify-content: space-between;
+            border: none;
+            align-items: center;
+            p {
+                color: #ffffff;
+                font-size: 16px;
+                font-weight: 300;
+            }
+        }
+        .calendarRowsIcon {
+            color: #B8B7B7;
+            transition: .5s;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            &:hover {
+                background-color: #7B2CBF33;
+                color: #E0AAFF;
+            }
+        }
+    }
+
+
+.selectTipoTurno {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    button {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        background-color: #FFFFFF1A;
+        backdrop-filter: blur(12px);
+        border: 0.5px solid #ffffff2f;
+        div {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+    }
+    p {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 400;
+    }
+}
+
+.selectTurno {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.turnosContainer {
+    width: 703px;
+    position: absolute;
+    right: 0;
+    top: 119px;
+    z-index: 9999;
+    backdrop-filter: blur(12px);
+    background-color: #0A001A99;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    div {
+        display: flex;
+        width: 95%;
+        justify-content: space-between;
+        align-items: center;
+        height: 45px;
+        div {
+            color: #8C8C8C;
+            font-size: 12px;
+            width: 100%;
+            text-align: center;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            p {
+                position: absolute;
+                bottom: -18px;
+                left: -6px;
+            font-size: 12px;
+            &:nth-child(1) {
+                left: -4px;
+            }
+            }
+            &:nth-child(11) {
+                border-right: 1px solid rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+    #p20hs {
+        position: absolute;
+        right: 26px;
+        top: 93px;
+        color: #FFFFFF;
+            font-size: 12px;
+    }
+    p {
+        color: #FFFFFF;
+            font-weight: 300;
+            font-size: 14px;
+        span {
+            font-weight: 500;
+        }
+    }
+}
+
+.buttonReservar {
+    background-color: #5A189A99;
+    width: 100%;
+    height: 64px;
+    border-radius: 16px;
+    font-size: 24px;
+    border: none;
+    box-shadow: 4px 4px 4px #FFFFFF1A inset, 2px 2px 2px #FFFFFF1A inset, -2px -2px 0 #0000001A inset, -4px -4px 4px 0 #0000001A inset;
+    font-weight: 400;
+    font-size: 16px;
+    color: #ffffff;
+    z-index: 50;
+    &:hover {
+        background-color: #C77DFF99;
+        cursor: pointer;
+    }
+}
+
+//STEP 2
+.turneraStep2Title {
+    color: #ffffff;
+    text-align: end;
+    font-family: "Moderniz";
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 50px;
+}
+
+.turneraStep2Inputs {
+    width: 100%;
+    height: 48px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    grid-template-rows: 1fr;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    align-items: center;
+    justify-items: center;
+}
+
+.turneraStep2Inputs p {
+    font-size: 16px;
+    color: #B8B7B7;
+    font-weight: 400;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.turneraStep2Inputs input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    color: #8C8C8C;
+    font-weight: 400;
+    text-align: start;
+    padding: 0 20px;
+    outline: none;
+    color: #ffffff;
+    &:hover {
+        color: #E0AAFF;
+    }
+    &::placeholder {
+        color: #8C8C8C;
+    }
+}
+
+.turneraStep2Inputs input:-webkit-autofill {
+    background-color: transparent !important;
+    -webkit-text-fill-color: #8C8C8C !important;
+    box-shadow: 0 0 0px 1000px #1F1A29 inset !important;
+}
+
+.turneraStep3Inputs {
+    padding-left: 34px;
+    border: none;
+    gap: 30px;
+    border-radius: 0;
+
+}
+.turneraStep2Buttons {
+    margin-top: 72px;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+    height: 64px;
+    align-items: center;
+    button {
+        background-color: #7B2CBF99;
+        width: 100%;
+        height: 64px;
+        border-radius: 16px;
+        font-size: 24px;
+        border: none;
+        box-shadow: 4px 4px 4px #FFFFFF1A inset, 2px 2px 2px #FFFFFF1A inset, -2px -2px 0 #0000001A inset, -4px -4px 4px 0 #0000001A inset;
+        font-weight: 400;
+        font-size: 16px;
+        color: #ffffff;
+        z-index: 50;
+        cursor: pointer;
+        &:nth-child(1) {
+            background-color: #5A189A99;
+            &:hover {
+                background-color: #C77DFF99;
+            }
+        }
+        &:nth-child(2) {
+            background-color: #7B2CBF99;
+            &:hover {
+                background-color: #C77DFF99;
+            }
+        }
+    }
+}
+
+.turneraErrorMessage {
+    position: absolute;
+    color: #ffffff;
+    z-index: 100;
+    bottom: 160px;
+    font-size: 16px;
+}
+
+//STEP 3
+
+.turneraStep3Fecha {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.turneraStep3FechaTurno {
+    display: flex;
+    p {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 400;
+        width: 128px;
+        height: 100%;
+    }
+}
+
+.turneraStep3FechaContainer {
+    height: 48px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 35% 30% 35%;
+    grid-template-rows: 1fr;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    p {
+        font-size: 16px;
+        color: #B8B7B7;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        span {
+            color: #ffffff;
+        }
+        &:nth-child(1) {
+            padding-left: 24px;
+            gap: 56px;
+            width: 100%;
+        }
+        &:nth-child(2) {
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            justify-content: space-evenly;
+            width: 100%;
+        }
+        &:nth-child(3) {
+            justify-content: space-evenly;
+            width: 100%;
+        }
+    }
+}
+
+.turneraStep3UserData {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    border-radius: 16px;
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+.turneraStep3Total {
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 24px;
+    align-self: flex-end;
+    position: absolute;
+    bottom: 125px;
+}
+
+//STEP 4
+.turneraStep4MetodoPago {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding: 0 32px;
+    gap: 24px;
+    p {
+        font-size: 20px;
+        color: #ffffff;
+    }
+}
+
+.turneraStep4LogoMp {
+    object-fit: contain;
+}
+
+.turneraStep4SelectContainer  {
+    background-color: rgba(104, 104, 104, 0.1);
+    border-radius: 4px;
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 32px;
+    height: 32px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 24px;
+    .turneraStep4SelectFill {
+        width: 100%;
+        height: 100%;
+        background-color: #E0AAFF;
+    }
+}
+
+//STEP 5
+.step5Confirmacion {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.setp5Button {
+    background-color: #7B2CBF99;
+    width: 100%;
+    height: 64px;
+    border-radius: 16px;
+    font-size: 24px;
+    border: none;
+    box-shadow: 4px 4px 4px #FFFFFF1A inset, 2px 2px 2px #FFFFFF1A inset, -2px -2px 0 #0000001A inset, -4px -4px 4px 0 #0000001A inset;
+    font-weight: 400;
+    font-size: 16px;
+    color: #ffffff;
+    z-index: 50;
+    cursor: pointer;
+    margin-top: 64px;
+    &:hover {
+        background-color: #C77DFF99;
+    }
+}
+
+//MENSUAL
+
+
+.selectersContainerMensual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    .fechaContainerMensual {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        .fechaContainerMensualLabel {
+            font-size: 20px;
+            color: #ffffff;
+        }
+    }
+    .fechaContainer {
+        grid-template-columns: 20% 80%;
+        margin-bottom: 10px;
+    }
+    .calendarContainer {
+        top: 79px;
+    }
+    .turnosContainer {
+        top: 145px;
+    }
+}
+
+.turneraStep3FechaTurnosContainer {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.turneraStep3FechaTurnos {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+.turneraStep3FechaTurnoLabel {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+@media (max-width: 862px) {
+    #turneraContainer {
+        width: 358px;
+        height: 426px;
+        top: 510;
+        gap: 16px;
+        padding: 16px;
+    }
+    .turneraUtilities {
+        gap: 16px;
+    }
+    .turneraH2 {
+        font-size: 22px;
+        line-height: 28px;
+    }
+    .calendarContainer {
+        top: 38px;
+        right: -30px;
+    }
+    .selectersContainer {
+        gap: 16px;
+    }
+    .fechaContainer {
+        height: 40px;
+        grid-template-columns: 20% 80%;
+        .fechaContainerLabel {
+            font-size: 14px;
+        }
+        .seleccionarFechaContainer {
+            p {
+                font-size: 14px;
+            }
+        }
+    }
+    .turnosContainer {
+        top: 95px;
+        right: -25px;
+        width: 375px;
+        padding: 8px;
+        p {
+            font-size: 12px;
+        }
+        div {
+            height: 35px;
+            div {
+                font-size: 10px;
+            }
+        }
+        #p20hs {
+            right: 12px;
+            top: 77px;
+            color: #FFFFFF;
+                font-size: 12px;
+        }
+    }
+    .turnossContainer {
+        grid-template-columns: 20% 80%;
+        height: 40px;
+        .turnossContainerLabel {
+            font-size: 14px;
+            height: 40px;
+        }
+        div {
+            display: none;
+        }
+    }
+    .turnosInfoMobile {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 1fr;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        backdrop-filter: blur(30px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        height: 40px;
+        align-items: center;
+        div {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            &:nth-child(1) {
+                border-right: 1px solid rgba(255, 255, 255, 0.2);
+            }
+            &:nth-child(2) {
+                border-right: 1px solid rgba(255, 255, 255, 0.2);
+                justify-content: flex-end;
+            }
+            p {
+                font-size: 14px;
+                padding: 0px 16px;
+                color: #ffffff;
+                font-weight: 300;
+                display: flex;
+                gap: 24px;
+                span {
+                    color: #8C8C8C;
+                }
+            }
+        }
+    }
+    .buttonReservar {
+        height: 40px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+    .selectTipoTurno {
+        p {
+            font-size: 14px;
+        }
+    }
+
+    .turneraStep2Title {
+        font-size: 22px;
+        line-height: 28px;
+    }
+    .turneraStep2Inputs {
+        grid-template-columns: 20% 80%;
+    }
+    .turneraStep2Inputs p {
+        font-size: 14px;
+    }
+    .turneraStep2Inputs input {
+        font-size: 14px;
+    }
+    .turneraStep3Inputs {
+        padding-left: 16px;
+        gap: 8px;
+        p {
+            font-size: 14px;
+        }
+    }
+    .turneraStep2Buttons {
+        margin-top: 26px;
+        height: auto;
+        gap: 8px;
+        button {
+            height: 40px;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+    }
+    .turneraErrorMessage {
+        font-size: 14px;
+        bottom: 70px;
+    }
+
+    .turneraStep3FechaTurno {
+        height: 40px;
+        align-items: center;
+        p {
+            font-size: 14px;
+            width: 70px;
+        }
+    }
+    .turneraStep3FechaContainer {
+        height: 40px;
+        border-radius: 8px;
+        grid-template-columns: repeat(3, 1fr);
+        p {
+            font-size: 12px;
+            height: 40px;
+            &:nth-child(1) {
+                padding-left: 4px;
+                gap: 10px;
+            }
+            &:nth-child(2) {
+                border-left: 1px solid rgba(255, 255, 255, 0.2);
+                border-right: 1px solid rgba(255, 255, 255, 0.2);
+                justify-content: space-evenly;
+            }
+            &:nth-child(3) {
+                justify-content: space-evenly;
+            }
+        }
+    }
+    .turneraStep3UserData {
+        height: 40px;
+        border-radius: 8px;
+        p {
+            font-size: 12px;
+            padding: 0 8px;
+            gap: 8px;
+        }
+    }
+    .turneraStep3Total {
+        font-size: 16px;
+        bottom: 65px;
+    }
+
+    .turneraStep4MetodoPago {
+        border-radius: 8px;
+        p {
+            font-size: 14px;
+        }
+    }
+
+    .step5Confirmacion {
+        font-size: 14px;
+    }
+
+    .setp5Button {
+        margin-top: 24px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    //MENSUAL
+    .fechaContainerMensualLabel {
+        font-size: 16px;
+    }
+    .selectersContainerMensual {
+        display: flex;
+        gap: 0;
+        .fechaContainerMensual {
+            gap: 5px;
+            .fechaContainerMensualLabel {
+                font-size: 16px;
+                margin-top: 5px;
+            }
+        }
+        .fechaContainer {
+            margin-bottom: 0px;
+        }
+        .calendarContainer {
+            top: 69px;
+        }
+        .turnosContainer {
+            top: 114px;
+        }
+    }
+    .turneraStep3FechaTurnosContainer {
+        flex-direction: column;
+        gap: 8px;
+        align-items: start;
+    }
+
+    .turneraStep3FechaTurnos {
+        gap: 8px;
+    }
+}

@@ -1,0 +1,143 @@
+#thirdSection {
+    height: 100vh;
+    display: flex;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    p {
+        color: #ffffff;
+    }
+}
+
+#thirdSectionTitle {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 50%;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+#thirdSectionDiv1 {
+    width: 450px;
+    position: absolute;
+    top: 30px;
+    overflow: hidden;
+    left: 9vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#thirdSectionDiv1Content {
+    transition: .5s;
+    margin-top: 16px;
+    overflow: hidden;
+    width: 100%;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    p {
+        font-size: 16px;
+        font-weight: 300;
+    }
+    ul {
+        list-style-type: none;
+        li {
+            span {
+                display: flex;
+                align-items: center;
+                font-weight: 600;
+                gap: 8px;
+                padding-left: 8px;
+            }
+        }
+    }
+}
+
+#thirdSectionDiv2 {
+    width: 450px;
+    position: absolute;
+    top: 30px;
+    overflow: hidden;
+    right: 9vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#thirdSectionDiv3 {
+    width: 450px;
+    position: absolute;
+    bottom: 30px;
+    overflow: hidden;
+    left: 9vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#thirdSectionDiv4 {
+    width: 450px;
+    position: absolute;
+    bottom: 30px;
+    right: 9vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+.animationTextHorizontal {
+    transition: .5s;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    p {
+        position: absolute;
+        text-wrap: nowrap;
+        font-family: "Moderniz";
+        font-size: 40px;
+        font-weight: 900;
+        line-height: 1;
+        transition: .5s ease-in-out;
+    }
+}
+
+.dropButton {
+    font-size: 16px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: .5s;
+}
+
+.dropButtonIcon {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color .5s, color .5s;
+    &:hover {
+        background-color: #C77DFF99;
+        color: #E0AAFF;
+    }
+}
+
+#linkUbi {
+    color: #ffffff;
+    &:hover {
+        color: #EEA8FF;
+    }
+}
+
+@media (max-width: 862px) {
+    #thirdSection {
+        display: none;
+    }
+}

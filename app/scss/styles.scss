@@ -1,0 +1,95 @@
+// sass --watch app/scss/styles.scss app/globals.css
+
+//USES
+@use './components/navBar';
+@use './components/header';
+@use './components/turnera';
+@use './components/s4Cards';
+@use './components/textUp';
+@use './components/whatsapp';
+
+@use './sections/firstSection';
+@use './sections/secondSection';
+@use './sections/thirdSection';
+@use './sections/thirdSectionMobile';
+@use './sections/fourthSection';
+@use './sections/fifthSection';
+@use './sections/sixthSection';
+@use './sections/seventhSection';
+@use './sections/eighthSection';
+@use './sections/ninthSection';
+@use './sections/privacyPolicy';
+@use './sections/checkoutSection';
+
+
+
+
+
+//FONT FACES
+
+//MODERNIZ
+@font-face {
+    font-family: 'Moderniz';
+    src: url('/fonts/Moderniz.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: block;
+}
+
+//INTER
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+//ESTILOS GLOBALES
+
+* {
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font-family: 'Inter';
+}
+
+body {
+    background-color: #ffffff;
+    width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}

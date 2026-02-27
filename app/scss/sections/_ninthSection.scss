@@ -1,0 +1,108 @@
+#ninthSection {
+    height: 100vh;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15vh;
+    gap: 10px;
+}
+
+#ninthSectionBanner {
+    position: absolute;
+    top: 0;
+    right: auto;
+    object-fit: cover;
+    z-index: -1;
+    transition: .5s;
+}
+
+#ninthSectionTextContainer {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 65vh;
+    width: 100%;
+    top: 11vh;
+}
+
+#ninthSectionRedesContainer {
+    position: absolute;
+    bottom: 13vh;
+    display: flex;
+    gap: 50px;
+    transition: .5s;
+    a {
+        font-size: 20px;
+        font-weight: 600;
+        color: #0A001A;
+        text-decoration: none;
+        &:hover {
+            color: #7B2CBF;
+        }
+        &:active {
+            color: #C77DFF;
+            text-shadow: 0 0 4px #C77DFF99;
+        }
+    }
+}
+
+#ninthSectionCopyright {
+    transition: .5s;
+    position: absolute;
+    bottom: 2vh;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    color: #0A001A;
+    a {
+        text-decoration: none;
+        color: #0A001A;
+        &:hover {
+            color: #5A189A;
+        }
+        &:active {
+            color: #C77DFF;
+            text-shadow: 0 0 4px #C77DFF99;
+        }
+    }
+    span {
+        color: #5A189A;
+    }
+}
+
+@media (max-width: 862px) {
+    #ninthSection {
+        height: 900px;
+        overflow: hidden;
+    }
+    #ninthSectionTextContainer {
+        top: 100px;
+    }
+    #ninthSectionRedesContainer {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        height: auto;
+        bottom: 65px;
+        height: auto;
+        gap: 10px;
+        transition: .5s ease-in-out;
+        a {
+            justify-self: center;
+        }
+    }
+    #ninthSectionBanner {
+        transition: .5s ease-in-out;
+    }
+    #ninthSectionCopyright {
+        transition: .5s ease-in-out;
+        bottom: 10px;
+        right: 0;
+        left: 0;
+    }
+}

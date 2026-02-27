@@ -1,0 +1,128 @@
+
+#eighthSection {
+    height: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 13vh;
+}
+
+#eigthSectionTitle {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    transition: .5s;
+}
+
+#eighthSectionRedesContainer {
+    display: flex;
+    gap: 30px;
+    transition: .5s;
+    margin: 3vh 0;
+}
+
+.eighthSectionRed {
+    height: 24px;
+    width: 330px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    &:nth-child(1) {
+        width: 180px;
+    }
+    &:nth-child(2) {
+        width: 330px;
+    }
+    &:nth-child(3) {
+        width: 180px;
+    }
+    p {
+        font-weight: 600;
+        text-align: center;
+        position: absolute;
+        transition: top .5s;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        &:nth-child(1) {
+            &:hover {
+                color: #7B2CBF;
+            }
+        }
+        .copyIcon {
+            &:hover {
+                color: #7B2CBF;
+            }
+        }
+        a {
+            color: #000100;
+            text-decoration: none;
+            padding: 0px 10px;
+            &:hover {
+                color: #7B2CBF;
+            }
+            &:active {
+                color: #C77DFF;
+                text-shadow: 0 0 4px #C77DFF99;
+            }
+        }
+    }
+}
+
+#eigthSectionUbi {
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    transition: .5s;
+    color: #000100;
+    text-decoration: none;
+}
+
+@media (max-width: 862px) {
+    #eighthSection {
+        justify-content: center;
+        height: 100vh;
+        padding-top: 0;
+    }
+    #eigthSectionTitle {
+        font-size: 16px;
+        transition: .5s ease-in-out;
+        margin-bottom: 32px;
+    }
+    #eigthSectionUbi {
+        font-size: 16px;
+        transition: .5s ease-in-out;
+    }
+    #eighthSectionRedesContainer {
+        transition: .5s ease-in-out;
+        gap: 0;
+    }
+    .eighthSectionRed {
+        height: 33px;
+        &:nth-child(1) {
+            width: 110px;
+        }
+        &:nth-child(2) {
+            width: 190px;
+        }
+        &:nth-child(3) {
+            width: 110px;
+        }
+        p {
+            font-size: 16px;
+            &:nth-child(2) {
+                font-size: 12px;
+                display: flex;
+                flex-direction: column-reverse;
+            }
+        }
+    }
+}

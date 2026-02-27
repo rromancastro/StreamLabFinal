@@ -1,0 +1,27 @@
+#header {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#headerImage {
+    position: absolute;
+    object-fit: contain;
+    top: -50px;
+    height: 920px;
+    width: 980px;
+    z-index: 100;
+}
+
+@media (max-width: 862px) {
+    #header {
+        overflow-x: hidden;
+    }
+    #headerImage2, #headerImage {
+        height: auto;
+        width: 410px;
+        margin-top: 200px;
+        overflow-x: hidden;
+    }
+}
