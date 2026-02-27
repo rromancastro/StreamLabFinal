@@ -144,9 +144,15 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
 
 
 
-
-    // Costo final del paquete mensual (4 sesiones) segun el precio que expone la sala.
-    const totalCombo = precioCombo * 4;
+    // costo final del paquete mensual 
+    const [totalCombo, setTotalCombo] = useState(0);
+    const horasTotales = bloques.reduce((acum, bloque) => acum + bloque.fin - bloque.inicio, 0);
+    console.log(horasTotales);
+    
+    useEffect(() => {
+        setTotalCombo(horasTotales > 8 ? precioCombo * 8 + ((precioCombo * 0.9) * (horasTotales - 8)) : precioCombo * horasTotales);
+        
+    }, [precioCombo, bloques]);
     
 
 // ...existing code...

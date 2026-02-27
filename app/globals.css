@@ -347,7 +347,6 @@ nav {
   justify-content: center;
 }
 .turnossContainer div {
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
   width: 100%;
   display: flex;
   align-items: center;
@@ -363,6 +362,9 @@ nav {
 }
 .turnossContainer div p span {
   color: #8C8C8C;
+}
+.turnossContainer div:nth-child(2) {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .turnosInfoMobile {
@@ -544,6 +546,9 @@ nav {
   color: #FFFFFF;
   font-weight: 300;
   font-size: 14px;
+}
+.turnosContainer p:nth-child(4) {
+  margin-top: 8px;
 }
 .turnosContainer p span {
   font-weight: 500;
@@ -800,6 +805,27 @@ nav {
   font-size: 16px;
 }
 
+.turneraStep5UserData {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 16px;
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+.turneraStep5UserData p {
+  padding: 40px;
+  width: 100%;
+  color: #8C8C8C;
+}
+.turneraStep5UserData p span {
+  color: #FFF;
+  margin-left: 8px;
+}
+
 .setp5Button {
   background-color: rgba(123, 44, 191, 0.6);
   width: 100%;
@@ -900,19 +926,23 @@ nav {
     right: -25px;
     width: 375px;
     padding: 8px;
+    gap: 8px;
   }
   .turnosContainer p {
     font-size: 12px;
   }
+  .turnosContainer p:nth-child(4) {
+    margin-top: 16px;
+  }
   .turnosContainer div {
-    height: 35px;
+    height: 30px;
   }
   .turnosContainer div div {
     font-size: 10px;
   }
   .turnosContainer #p20hs {
     right: 12px;
-    top: 77px;
+    top: 67px;
     color: #FFFFFF;
     font-size: 12px;
   }
@@ -948,7 +978,6 @@ nav {
     border-right: 1px solid rgba(255, 255, 255, 0.2);
   }
   .turnosInfoMobile div:nth-child(2) {
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
     justify-content: flex-end;
   }
   .turnosInfoMobile div p {
@@ -1058,6 +1087,17 @@ nav {
   .setp5Button {
     margin-top: 24px;
     height: 40px;
+    font-size: 14px;
+  }
+  .turneraStep5UserData {
+    padding: 30px 8px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .turneraStep5UserData p {
+    padding: 0;
     font-size: 14px;
   }
   .fechaContainerMensualLabel {

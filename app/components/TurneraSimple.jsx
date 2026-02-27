@@ -99,7 +99,11 @@ export const TurneraSimple = ({setTurnera}) => {
         return null; // no hay horarios disponibles
     };
 
-    const total = (horaFin - horaInicio) * valorSala;
+    const [total, setTotal] = useState(0);
+
+    useEffect(() => {
+        setTotal((horaFin - horaInicio) == 2 ? valorSala * 2 : valorSala * 2 + ((valorSala * 0.9) * ((horaFin - horaInicio - 2))));
+    }, [valorSala, horaInicio, horaFin]);
 
     const handleHoraClick = (hora) => {
         if (seleccionPaso === "inicio") {
@@ -393,20 +397,38 @@ useEffect(() => {
 
 
 
-    //cerrar al hacer click afuera
     const calendarRef = useRef(null);
     const horariosRef = useRef(null);
+    const toggleCalendarRef = useRef(null);
+    const toggleHorariosRef = useRef(null);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (
-            calendarRef.current &&
-            !calendarRef.current.contains(event.target) &&
-            horariosRef.current &&
-            !horariosRef.current.contains(event.target)
+                toggleCalendarRef.current &&
+                toggleCalendarRef.current.contains(event.target)
             ) {
-            setShowCalendar(false);
-            setShowHorarios(false);
+                return;
+            }
+            if (
+                toggleHorariosRef.current &&
+                toggleHorariosRef.current.contains(event.target)
+            ) {
+                return;
+            }
+
+            if (
+                calendarRef.current &&
+                !calendarRef.current.contains(event.target)
+            ) {
+                setShowCalendar(false);
+            }
+
+            if (
+                horariosRef.current &&
+                !horariosRef.current.contains(event.target)
+            ) {
+                setShowHorarios(false);
             }
         };
 
@@ -459,13 +481,13 @@ useEffect(() => {
                 <div className="selectersContainer">
                     <div className="fechaContainer">
                         <p className="fechaContainerLabel">Fecha</p>
-                        <div className="seleccionarFechaContainer">
+                        <div ref={toggleCalendarRef} className="seleccionarFechaContainer">
                             <p>{diaSeleccionado}.{meses[mesSeleccionado].toUpperCase().slice(0, 3)}</p>
                             <IoTriangleSharp style={{rotate: showCalendar ? '0deg' : '180deg'}} onClick={()=>setShowCalendar(!showCalendar)} className="seleccionarFechaIcon" />
                         </div>
                     </div>
 
-                    <div className="turnossContainer">
+                    <div ref={toggleHorariosRef} className="turnossContainer">
                         <p className="turnossContainerLabel">Turnos</p>
                         <div>
                             <p>Desde: <span>{horaInicio}hs</span></p>
@@ -646,6 +668,7 @@ useEffect(() => {
                         </div>
                     </div>
                     <p className="turneraStep3Total">TOTAL: ${total}</p>
+                <p className="turneraErrorMessage">{errorMessage}</p>
                     <div className="turneraStep2Buttons">
                         <button onClick={() => setTurneraStep(1)}>Cancelar</button>
                         <button  onClick={() => verificarDatos()}>Continuar</button>
@@ -689,9 +712,9 @@ useEffect(() => {
                             <p>Turno <span>{horaInicio}-{horaFin} hs</span></p>
                         </div>
                     </div>
-                    <div className="turneraStep3UserData" style={{display: 'flex', justifyContent: 'space-between'}}>
-                        <p style={{color: '#fff', padding: '40px',width: '100%', borderRight: '1px solid rgba(255, 255, 255, 0.2)'}}>eMail <span>{userEmail}</span></p>
-                        <p style={{color: '#fff', padding: '40px',width: '100%'}}>Nombre <span>{userName}</span></p>
+                    <div className="turneraStep5UserData">
+                        <p style={{borderRight: '1px solid rgba(255, 255, 255, 0.2)'}}>eMail <span>{userEmail}</span></p>
+                        <p style={{}}>Nombre <span>{userName}</span></p>
                     </div>
                     <p className="turneraStep3Total" style={{bottom: '105px'}}>TOTAL: ${total}</p>
                     <div style={{ width: '100%', marginBottom: '-30px' }}>

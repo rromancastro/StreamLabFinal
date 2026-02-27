@@ -152,7 +152,6 @@
         justify-content: center;
     }
     div {
-        border-right: 1px solid rgba(255, 255, 255, 0.2);
         width: 100%;
         display: flex;
         align-items: center;
@@ -167,6 +166,9 @@
             span {
                 color: #8C8C8C;
             }
+        }
+        &:nth-child(2) {
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
         }
     }
 }
@@ -337,7 +339,7 @@
                 position: absolute;
                 bottom: -18px;
                 left: -6px;
-            font-size: 12px;
+                font-size: 12px;
             &:nth-child(1) {
                 left: -4px;
             }
@@ -358,6 +360,9 @@
         color: #FFFFFF;
             font-weight: 300;
             font-size: 14px;
+        &:nth-child(4) {
+            margin-top: 8px;
+        }
         span {
             font-weight: 500;
         }
@@ -621,6 +626,27 @@
     font-size: 16px;
 }
 
+.turneraStep5UserData {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 16px;
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    p {
+        padding: 40px;
+        width: 100%;
+        color: #8C8C8C;
+        span {
+            color: #FFF;
+            margin-left: 8px;
+        }
+    }
+}
+
 .setp5Button {
     background-color: #7B2CBF99;
     width: 100%;
@@ -726,18 +752,22 @@
         right: -25px;
         width: 375px;
         padding: 8px;
+        gap: 8px;
         p {
             font-size: 12px;
+            &:nth-child(4) {
+                margin-top: 16px;
+            }
         }
         div {
-            height: 35px;
+            height: 30px;
             div {
                 font-size: 10px;
             }
         }
         #p20hs {
             right: 12px;
-            top: 77px;
+            top: 67px;
             color: #FFFFFF;
                 font-size: 12px;
         }
@@ -772,7 +802,6 @@
                 border-right: 1px solid rgba(255, 255, 255, 0.2);
             }
             &:nth-child(2) {
-                border-right: 1px solid rgba(255, 255, 255, 0.2);
                 justify-content: flex-end;
             }
             p {
@@ -893,6 +922,20 @@
         height: 40px;
         font-size: 14px;
     }
+
+    
+    .turneraStep5UserData {
+            padding: 30px 8px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        p {
+            padding: 0;
+            font-size: 14px;
+        }
+    }
+
 
     //MENSUAL
     .fechaContainerMensualLabel {
