@@ -109,12 +109,50 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
     const primerInicioDisponible = (fecha) => {
         for (const h of horas) {
             if (puedeSerInicio(fecha, h)) {
-            return h;
+                return h;
             }
         }
         return null;
     };
 
+    // ------------------------------------------------------------------
+    // helper para comprobar si un determinado slot está libre en una fecha
+    const slotAvailableOnDate = (fecha, slot) => {
+        const fechaISO = fecha.toISOString().slice(0,10);
+        const [startStr, endStr] = slot.split('-'); // "11:30","13:30"
+        const now = new Date();
+
+        // si es hoy y ya pasaron las 18hs, consideramos que no hay ningún turno
+        if (fechaISO === now.toISOString().slice(0,10) && now.getHours() >= 18) {
+            return false;
+        }
+
+        // si es hoy y el inicio ya pasó, no está disponible
+        if (fechaISO === now.toISOString().slice(0,10)) {
+            const nowHHMM = `${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+            if (startStr <= nowHHMM) return false;
+        }
+
+        // comprobar solapamientos con reservas del día
+        const reservasDelDia = reservas.filter(r => r.fecha_inicio.slice(0,10) === fechaISO);
+        const startDT = new Date(`${fechaISO}T${startStr}:00`);
+        const endDT = new Date(`${fechaISO}T${endStr}:00`);
+        for (const r of reservasDelDia) {
+            const rStart = new Date(r.fecha_inicio.replace(' ', 'T'));
+            const rEnd = r.fecha_fin ? new Date(r.fecha_fin.replace(' ', 'T')) : new Date(rStart.getTime() + 60*60*1000);
+            if (rStart < endDT && rEnd > startDT) return false;
+        }
+        return true;
+    };
+
+    // determina si existe al menos un horario libre para una fecha concreta
+    const hayHorariosDisponibles = (fecha) => {
+        if (!fecha) return false;
+        for (const h of horarios) {
+            if (slotAvailableOnDate(fecha, h)) return true;
+        }
+        return false;
+    };
 
     const clickHora = (semana, hora) => {
         setBloques(prev => {
@@ -159,27 +197,6 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
     useEffect(() => {
         const MAX_DAYS = 30;
         let attempts = 0;
-
-        const slotAvailableOnDate = (fecha, slot) => {
-            const fechaISO = fecha.toISOString().slice(0,10);
-            const [startStr, endStr] = slot.split('-'); // "11:30","13:30"
-            // si es hoy y el inicio ya pasó, no está disponible
-            const now = new Date();
-            if (fechaISO === now.toISOString().slice(0,10)) {
-                const nowHHMM = `${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
-                if (startStr <= nowHHMM) return false;
-            }
-            // comprobar solapamientos con reservas del día
-            const reservasDelDia = reservas.filter(r => r.fecha_inicio.slice(0,10) === fechaISO);
-            const startDT = new Date(`${fechaISO}T${startStr}:00`);
-            const endDT = new Date(`${fechaISO}T${endStr}:00`);
-            for (const r of reservasDelDia) {
-                const rStart = new Date(r.fecha_inicio.replace(' ', 'T'));
-                const rEnd = r.fecha_fin ? new Date(r.fecha_fin.replace(' ', 'T')) : new Date(rStart.getTime() + 60*60*1000);
-                if (rStart < endDT && rEnd > startDT) return false;
-            }
-            return true;
-        };
 
         // Empezamos con la fecha[0] actual (puede haber sido modificada por el usuario)
         let base = new Date(fechaSeleccionada[0]);
@@ -236,6 +253,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
         // si cambiamos la base, actualizamos las fechas en el estado (solo la primera y sus 3 siguientes)
         if (baseChanged) {
             setFechaSeleccionada(candidateFechas);
+            setCurrentMonth(new Date(base)); // ensure calendar shows nueva base
         }
 
         setBloques(prev => {
@@ -397,7 +415,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                     estado: 'pendiente',
                     nombre: userName,
                     telefono: userPhone,
-                    precio_total: precioCombo
+                    precio_total: totalCombo
                 };
             });
 
@@ -413,7 +431,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                 estado: 'pendiente',
                 nombre: userName,
                 telefono: userPhone,
-                precio_por_turno: precioCombo,
+                precio_por_turno: totalCombo,
                 turnos: turnosPayload
             });
 
@@ -658,7 +676,23 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                                                     activeStartDate={currentMonth}
                                                     tileDisabled={({ date: currentDate, view }) => {
                                                         if (view === "month") {
-                                                            return currentDate.getMonth() !== currentMonth.getMonth();
+                                                            // fuera del mes actual
+                                                            if (currentDate.getMonth() !== currentMonth.getMonth()) return true;
+
+                                                            const today = new Date();
+                                                            today.setHours(0,0,0,0);
+
+                                                            // no permitir días pasados
+                                                            if (currentDate < today) return true;
+
+                                                            // si el día no tiene ningún horario disponible, bloquearlo
+                                                            if (!hayHorariosDisponibles(currentDate)) return true;
+
+                                                            // para el día actual: a partir de las 18hs se bloquea
+                                                            if (currentDate.getTime() === today.getTime()) {
+                                                                if (new Date().getHours() >= 18) return true;
+                                                            }
+                                                            return false;
                                                         }
                                                         return false;
                                                     }}

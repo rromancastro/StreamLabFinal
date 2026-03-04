@@ -38,7 +38,7 @@ export const S4Card2 = ({x, y, opacity}) => {
                             <br />
                            Lunes a Sábado
                         </p>
-                        <p>Precio: <span>${(valorSala*4).toLocaleString("es-ES")}</span></p>
+                        <p>Precio: <span>${(valorSala*8).toLocaleString("es-ES")}</span></p>
                     </div>
 
                     <a href="#turneraContainer">Reservar</a>

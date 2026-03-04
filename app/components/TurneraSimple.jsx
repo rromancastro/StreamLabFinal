@@ -79,6 +79,7 @@ export const TurneraSimple = ({setTurnera}) => {
     }, [fechaSeleccionada]);
 
     const getPrimeraHoraDisponible = (fecha) => {
+        if (!fecha) return null;
         const ahora = new Date();
         const esHoy = fecha.toDateString() === ahora.toDateString();
 
@@ -97,6 +98,11 @@ export const TurneraSimple = ({setTurnera}) => {
         }
 
         return null; // no hay horarios disponibles
+    };
+
+    // comprueba si existe al menos un turno disponible para la fecha indicada
+    const hayHorariosDisponibles = (fecha) => {
+        return getPrimeraHoraDisponible(fecha) !== null;
     };
 
     const [total, setTotal] = useState(0);
@@ -151,7 +157,31 @@ const generaSolapeConReservas = (fecha, inicio, fin) => {
   });
 };
 
+// cada vez que cambia la fechaSeleccionada o llegan reservas
+// recalculamos la primera hora disponible y además si la fecha
+// seleccionada es hoy y no hay horarios (o ya pasaron las 18hs)
+// nos adelantamos al siguiente día automáticamente.
 useEffect(() => {
+  const ahora = new Date();
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0);
+
+  const sel = new Date(fechaSeleccionada);
+  sel.setHours(0, 0, 0, 0);
+
+  // si estamos en el día actual y no queda ningún horario libre
+  // o directamente ya son las 18 o más, saltamos a mañana
+  if (sel.getTime() === hoy.getTime()) {
+    const primeraHoy = getPrimeraHoraDisponible(fechaSeleccionada);
+    if (primeraHoy === null || ahora.getHours() >= 18) {
+      const manana = new Date(hoy);
+      manana.setDate(manana.getDate() + 1);
+      setFechaSeleccionada(manana);
+      setCurrentMonth(manana);
+      return; // volvemos a ejecutarnos con la nueva fecha
+    }
+  }
+
   const primera = getPrimeraHoraDisponible(fechaSeleccionada);
 
   if (primera !== null) {
@@ -324,8 +354,8 @@ useEffect(() => {
                         const payload = {
                             ...formData,
                             selectedPaymentMethod: selectedPaymentMethod ?? 'mercadopago',
-                            transactionAmount: valorSala,      // 💥 fijo
-                            transaction_amount: valorSala,     // 💥 compatibilidad backend
+                            transactionAmount: total,      // 💥 fijo
+                            transaction_amount: total,     // 💥 compatibilidad backend
                             titulo: 'Reserva Turno Simple',
                             email: formData?.email ?? formData?.payer?.email ?? userEmail,
                             reserva_id: external_reference,    // 💥 clave para vincular con la reserva
@@ -454,7 +484,7 @@ useEffect(() => {
             observaciones: 'ninguna',
             estado: 'pendiente',
             email: userEmail,
-            precio_total: (horaFin - horaInicio) * valorSala,
+            precio_total: total,
             });
 
             if (reserva?.success && reserva.data?.reserva_id) {
@@ -531,7 +561,18 @@ useEffect(() => {
                                 }
                                 const today = new Date();
                                 today.setHours(0, 0, 0, 0);
-                                return currentDate < today;
+
+                                // no permitimos días pasados
+                                if (currentDate < today) return true;
+
+                                // si el día no tiene ningún horario disponible lo deshabilitamos
+                                if (!hayHorariosDisponibles(currentDate)) return true;
+
+                                // particularmente el día actual se bloquea cuando ya son las 18hs
+                                if (currentDate.getTime() === today.getTime()) {
+                                    const ahora = new Date();
+                                    if (ahora.getHours() >= 18) return true;
+                                }
                             }
                             return false;
                         }}

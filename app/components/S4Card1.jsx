@@ -14,7 +14,7 @@ export const S4Card1 = ({x, y, opacity, rotate}) => {
         verSalas()
             .then(data => {
             console.log("Datos recibidos:", data.data[0]);
-            setValorSala(Number(data.data[0].precio_por_hora));
+            setValorSala(Number(data.data[0].precio_por_hora) * 2);
             })
             .catch(err => console.error("Error al obtener salas:", err));
     }, []);
